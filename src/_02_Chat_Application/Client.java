@@ -1,4 +1,4 @@
-package _00_Click_Chat.networking;
+package _02_Chat_Application;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -52,8 +52,11 @@ public class Client {
 	
 	public void sendClick() {
 		try {
+			String received = is.readUTF();
+			JOptionPane.showMessageDialog(null, received);
 			if (os != null) {
-				os.writeObject("CLICK SENT FROM CLIENT");
+				String message = JOptionPane.showInputDialog("Type a message");
+				os.writeUTF(message);
 				os.flush();
 			}
 		} catch (IOException e) {

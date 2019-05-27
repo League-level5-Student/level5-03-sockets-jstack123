@@ -1,16 +1,18 @@
 package _01_Intro_To_Sockets.client;
 
 import java.net.*;
+
 import java.io.*;
 
 public class ClientGreeter {
 
-   public static void main(String [] args) {
+	public static void main(String [] args) {
 	  //1. Create a String for the ip address of the server. 
 	  // If you don't know how to find a computer's ip address, ask about ifconfig on linux/mac and ipconfig on windows.
-      
+       String address = "192.168.1.199";
       //2. Create an integer for the server's port number
-      
+   
+      int portNum = 8424;
       //3. Surround steps 4-9 in a try-catch block that catches any IOExceptions.
     
     	 //4. Create an object of the Socket class. When initializing the object, pass in the ip address and the port number
@@ -24,6 +26,23 @@ public class ClientGreeter {
          //8. Use the DataInputStream object to print a message from the server using the readUTF() method.
          
          //9. Close the client's server object
-
+      
+    	try {
+			Socket socket = new Socket(address,portNum);
+			DataOutputStream dataOut = new DataOutputStream(socket.getOutputStream());
+			dataOut.writeUTF("hello there");
+			DataInputStream dataIn = new DataInputStream(socket.getInputStream());
+			String message = dataIn.readUTF();
+			System.out.println(message);
+			socket.close();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   	
+    	
    }
 }
