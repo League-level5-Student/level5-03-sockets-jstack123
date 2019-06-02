@@ -37,8 +37,8 @@ public class Server {
 
 			while (connection.isConnected()) {
 				try {
-					JOptionPane.showMessageDialog(null, is.readObject());
-					System.out.println(is.readObject());
+					JOptionPane.showMessageDialog(null, (String) is.readObject());
+					System.out.println((String) is.readObject());
 				}catch(EOFException e) {
 					JOptionPane.showMessageDialog(null, "Connection Lost");
 					System.exit(0);
@@ -64,11 +64,11 @@ public class Server {
 
 	public void sendClick() {
 		try {
-			String received = is.readUTF();
-			JOptionPane.showMessageDialog(null, received);
+			//String received = is.readUTF();
+			//JOptionPane.showMessageDialog(null, "From Client: " + received);
 			if (os != null) {
 				String message = JOptionPane.showInputDialog("Type a message");
-				os.writeUTF(message);
+				os.writeObject(message);
 				os.flush();
 			}
 		} catch (IOException e) {

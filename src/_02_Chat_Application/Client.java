@@ -41,8 +41,8 @@ public class Client {
 		
 		while (connection.isConnected()) {
 			try {
-				JOptionPane.showMessageDialog(null, is.readObject());
-				System.out.println(is.readObject());
+				JOptionPane.showMessageDialog(null, (String) is.readObject());
+				System.out.println((String)is.readObject());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -52,11 +52,11 @@ public class Client {
 	
 	public void sendClick() {
 		try {
-			String received = is.readUTF();
-			JOptionPane.showMessageDialog(null, received);
+			//String received = is.readUTF();
+			//JOptionPane.showMessageDialog(null, received);
 			if (os != null) {
 				String message = JOptionPane.showInputDialog("Type a message");
-				os.writeUTF(message);
+				os.writeObject(message);
 				os.flush();
 			}
 		} catch (IOException e) {

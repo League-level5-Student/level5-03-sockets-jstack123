@@ -3,13 +3,14 @@ package _02_Chat_Application;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
-import _00_Click_Chat.networking.Client;
-import _00_Click_Chat.networking.Server;
+//import _00_Click_Chat.networking.Client;
+//import _00_Click_Chat.networking.Server;
 
 public class ButtonClicker extends JFrame {
-	JButton button = new JButton("CLICK");
-	
+	JButton button = new JButton("Click here to type a message.");
+	JTextField tf = new JTextField();
 	Server server;
 	Client client;
 	
@@ -28,6 +29,7 @@ public class ButtonClicker extends JFrame {
 				server.sendClick();
 			});
 			add(button);
+//			add(tf);
 			setVisible(true);
 			setSize(400, 300);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,14 +37,15 @@ public class ButtonClicker extends JFrame {
 			
 		}else{
 			setTitle("CLIENT");
-			String ipStr = JOptionPane.showInputDialog("Enter the IP Address");
-			String prtStr = JOptionPane.showInputDialog("Enter the port number");
-			int port = Integer.parseInt(prtStr);
+			String ipStr = "192.168.1.199";//JOptionPane.showInputDialog("Enter the IP Address");
+			//String prtStr = JOptionPane.showInputDialog("Enter the port number");
+			int port = 8080;//Integer.parseInt(prtStr);
 			client = new Client(ipStr, port);
 			button.addActionListener((e)->{
 				client.sendClick();
 			});
 			add(button);
+//			add(tf);
 			setVisible(true);
 			setSize(400, 300);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
